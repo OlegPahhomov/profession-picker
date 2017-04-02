@@ -12,6 +12,9 @@
 					templateUrl: urlBase + "esileht.html",
 					controller: 'ProfessionPickerController as vm'
 				})
+				.when("/original", {
+					templateUrl: urlBase + "original_index.html",
+				})
 				.otherwise({redirectTo:'/'})
 		}]);
 })();
