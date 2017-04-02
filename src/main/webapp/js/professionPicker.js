@@ -9,7 +9,7 @@
 			$locationProvider.hashPrefix('');
 			$routeProvider
 				.when("/", {
-					templateUrl: urlBase + "esileht.html",
+					templateUrl: urlBase + "frontpage.html",
 					controller: 'ProfessionPickerController as vm'
 				})
 				.when("/original", {
