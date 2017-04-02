@@ -7,8 +7,8 @@ public class V1__Add_classifiers_table implements SpringJdbcMigration {
     public void migrate(JdbcTemplate jdbcTemplate) throws Exception {
         jdbcTemplate.update("CREATE TABLE CL_CLASSIFIER (\n" +
                 "  id      BIGSERIAL PRIMARY KEY                  NOT NULL,\n" +
-                "  code    TEXT CHECK (NAME <> '')  UNIQUE        NOT NULL,\n" +
-                "  name    TEXT CHECK (NAME <> '')                NOT NULL,\n" +
+                "  code    TEXT CHECK (code <> '')  UNIQUE        NOT NULL,\n" +
+                "  name    TEXT CHECK (name <> '')                NOT NULL,\n" +
                 "  description TEXT                               NULL\n" +
                 ");"
         );
