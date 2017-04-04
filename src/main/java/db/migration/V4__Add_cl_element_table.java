@@ -67,11 +67,11 @@ public class V4__Add_cl_element_table implements SpringJdbcMigration {
 	insertElement(jdbcTemplate, 337, "Other (Wood)", 3, i++);
 	insertElement(jdbcTemplate, 51, "Wooden building materials", 3, i++);
 	insertElement(jdbcTemplate, 47, "Wooden houses", 3, i++);
-	insertElement(jdbcTemplate, 3, "Other", i++, 1);
+	insertElement(jdbcTemplate, 3, "Other", 1, i++);
 	insertElement(jdbcTemplate, 37, "Creative industries", 2, i++);
 	insertElement(jdbcTemplate, 29, "Energy technology", 2, i++);
 	insertElement(jdbcTemplate, 33, "Environment", 2, i++);
-	insertElement(jdbcTemplate, 2, "Service", i++, 1);
+	insertElement(jdbcTemplate, 2, "Service", 1, i++);
 	insertElement(jdbcTemplate, 25, "Business services", 2, i++);
 	insertElement(jdbcTemplate, 35, "Engineering", 2, i++);
 	insertElement(jdbcTemplate, 28, "Information Technology and Telecommunications", 2, i++);

@@ -15,35 +15,31 @@ import java.util.stream.Collectors;
 @Service
 public class SectorConverter {
 
-  private List<ClElementDto> convert(List<ClElement> sector) {
-    return sector.stream().map(this::convert).collect(Collectors.toList());
+  public List<FormDto> convertForms(List<ClElement> sector, List<FoForm> foForms) {
+    return foForms.stream().map(form -> convertForm(sector, form)).collect(Collectors.toList());
   }
 
-  public List<FormDto> conver(List<ClElement> sector, List<FoForm> foForms) {
-    return foForms.stream().map(form -> convert231(sector, form)).collect(Collectors.toList());
-  }
-
-  private FormDto convert231(List<ClElement> sector, FoForm form) {
+  private FormDto convertForm(List<ClElement> sector, FoForm form) {
     FormDto dto = new FormDto();
     dto.setId(form.getId());
     dto.setName(form.getName());
     dto.setUserName(form.getUserName());
     dto.setAgreement(form.isAgreement());
-    dto.setElements(convert(sector, form.getFormSectors()));
+    dto.setElements(convertElements(sector, form.getFormSectors()));
     return dto;
   }
 
-  public List<StructureClElementDto> convert(List<ClElement> sector, List<FoFormSectorJoin> formSectors) {
-    return sector.stream().map(sec -> convert(sec, formSectors)).collect(Collectors.toList());
+  public List<StructureClElementDto> convertElements(List<ClElement> sector, List<FoFormSectorJoin> formSectors) {
+    return sector.stream().map(sec -> convertElement(sec, formSectors)).collect(Collectors.toList());
   }
 
-  private StructureClElementDto convert(ClElement sec, List<FoFormSectorJoin> formSectors) {
+  private StructureClElementDto convertElement(ClElement sec, List<FoFormSectorJoin> formSectors) {
     StructureClElementDto dto = new StructureClElementDto();
-    Optional<Long> sectorId = formSectors.stream().filter(m -> m.getSectorKlId().getId().equals(sec.getId()))
+    Optional<Long> formSectorId = formSectors.stream().filter(m -> m.getSectorKlId().getId().equals(sec.getId()))
             .findAny()
             .flatMap(x -> Optional.of(x.getId()));
-    sectorId.ifPresent(dto::setId);
-    dto.setSelected(sectorId.isPresent());
+    formSectorId.ifPresent(dto::setId);
+    dto.setSelected(formSectorId.isPresent());
     dto.setElId(sec.getId());
     dto.setName(sec.getName());
     dto.setLevel(sec.getLevelNr());
@@ -51,11 +47,4 @@ public class SectorConverter {
     return dto;
   }
 
-  private ClElementDto convert(ClElement sec) {
-    ClElementDto dto = new ClElementDto();
-    dto.setName(sec.getName());
-    dto.setLevel(sec.getLevelNr());
-    dto.setOrder(sec.getOrderNr());
-    return dto;
-  }
 }

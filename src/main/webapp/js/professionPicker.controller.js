@@ -10,6 +10,7 @@
 		vm.init = init;
 		vm.submitForm = submitForm;
 		vm.init();
+		vm.chooseClass = chooseClass;
 
 		function init() {
 			$http.get('/sectors').then(function (result) {
@@ -38,6 +39,23 @@
 					vm.messageContainer = apiResponse.data;
 				}
 			})
+		}
+
+		function chooseClass(element) {
+			if (element && element.level){
+				if (element.level == 1){
+					return {};
+				} else if (element.level == 2){
+					return {"margin-left" : "20px"}
+				} else if (element.level == 3){
+					return {"margin-left" : "40px"}
+				} else if (element.level == 4){
+					return {"margin-left" : "60px"}
+				} else if (element.level == 5){
+					return {"margin-left" : "80px"}
+				}
+			}
+
 		}
 	}
 })();

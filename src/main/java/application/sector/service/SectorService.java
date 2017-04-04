@@ -16,7 +16,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -39,7 +38,7 @@ public class SectorService {
     if (foForms.isEmpty()) {
       dtos.setForms(Arrays.asList(emptyForm(sectorElements)));
     } else {
-      dtos.setForms(sectorConverter.conver(sectorElements, foForms));
+      dtos.setForms(sectorConverter.convertForms(sectorElements, foForms));
     }
     return dtos;
   }
@@ -82,7 +81,7 @@ public class SectorService {
 
   private FormDto emptyForm(List<ClElement> sector) {
     FormDto formDto = new FormDto();
-    formDto.setElements(sectorConverter.convert(sector, new ArrayList<>()));
+    formDto.setElements(sectorConverter.convertElements(sector, new ArrayList<>()));
     formDto.setName("ver1");
     return formDto;
   }
