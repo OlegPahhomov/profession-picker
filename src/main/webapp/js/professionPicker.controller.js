@@ -19,8 +19,14 @@
 				if (apiResponse.ok) {
 					vm.formData = apiResponse.data;
 					console.log(vm.formData);
+
+					$http.post('/sectors', vm.formData).then(function (result) {
+						console.log("so hapy;");
+					})
 				}
 			})
+
+
 		}
 	}
 })();
