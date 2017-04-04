@@ -9,7 +9,7 @@ public class FormDto {
   private String name;
   private String userName;
   private boolean agreement;
-  private List<StructureClElementDto> elemendid;
+  private List<StructureClElementDto> elements;
 
   public Long getId() {
     return id;
@@ -43,14 +43,14 @@ public class FormDto {
     this.agreement = agreement;
   }
 
-  public List<StructureClElementDto> getElemendid() {
-    if (elemendid == null){
-      elemendid = new ArrayList<>();
+  public List<StructureClElementDto> getElements() {
+    if (elements == null){
+      elements = new ArrayList<>();
     }
-    return elemendid;
+    return elements;
   }
 
-  public void setElemendid(List<StructureClElementDto> elemendid) {
-    this.elemendid = elemendid;
+  public void setElements(List<StructureClElementDto> elements) {
+    this.elements = elements;
   }
 }

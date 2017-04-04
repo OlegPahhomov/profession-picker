@@ -8,14 +8,20 @@
 
 <message-container></message-container>
 
-{{vm.formData}}
-
 Please enter your name and pick the Sectors you are currently involved in.
 
 <br>
 <br>
 Name:
 <input type="text" ng-model="vm.formData.name">
+
+<div ng-repeat="element in vm.formData.elements">
+    <label for="{{element.id}}">
+        <input id="{{element.id}}" type="checkbox" ng-model="element.selected"
+               ng-value="true" >
+        {{element.name}}
+    </label>
+</div>
 
 <br />
 <br />

@@ -12,22 +12,29 @@
 		vm.init();
 
 		function init() {
-			console.log("init");
 			$http.get('/sectors').then(function (result) {
 				var apiResponse = result.data
 				if (apiResponse.ok) {
 					vm.formData = apiResponse.data;
-					console.log(vm.formData);
+					if (vm.formData.forms){
+						vm.newForm = vm.formData.forms[0];
+					} else {
+						vm.newForm = {}
+					}
 				}
 			})
 		}
 
 		function submitForm() {
-			console.log(12321);
-			$http.post('/sectors', vm.formData).then(function (result) {
+			$http.post('/sectors', vm.newForm).then(function (result) {
 				var apiResponse = result.data;
 				if (apiResponse.ok){
 					console.log("so hapy;");
+					// var index = _.indexOf(vm.staaz.dokumendid, _.find(vm.staaz.dokumendid, {tempId: vm.dokument.tempId}));
+					// vm.staaz.dokumendid.splice(index, 1, vm.dokument);
+					// vm.showDocumentModalEdit = false;
+					// vm.dokument = undefined;
+
 				} else {
 					console.log("so saaad;");
 					console.log(apiResponse.data);
