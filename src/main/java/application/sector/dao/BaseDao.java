@@ -29,4 +29,8 @@ public abstract class BaseDao {
   public <CE extends AbstractEntity> void delete(CE entity) {
     getCurrentSession().delete(entity);
   }
+
+  public <CE extends AbstractEntity> void flush() {
+    getCurrentSession().flush();
+  }
 }

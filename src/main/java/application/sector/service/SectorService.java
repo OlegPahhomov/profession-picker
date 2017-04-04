@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -31,16 +32,7 @@ public class SectorService {
   private SectorConverter sectorConverter;
 
   public FormPageDto getDtos() {
-    List<ClElement> sectorElements = clElementDao.getByKlfCode("SECTOR");
-    List<FoForm> foForms = foFormDao.findAll();
-
-    FormPageDto dtos = new FormPageDto();
-    if (foForms.isEmpty()) {
-      dtos.setForms(Arrays.asList(emptyForm(sectorElements)));
-    } else {
-      dtos.setForms(sectorConverter.convertForms(sectorElements, foForms));
-    }
-    return dtos;
+    return new FormPageDto(convertForms(clElementDao.getByKlfCode("SECTOR"), foFormDao.findAll()));
   }
 
   public FormDto save(FormDto dto) {
@@ -48,19 +40,24 @@ public class SectorService {
     List<StructureClElementDto> elements = dto.getElements();
     for (StructureClElementDto element : elements) {
       if (element.isSelected() && element.getId() == null) {
-        FoFormSectorJoin newJoin = new FoFormSectorJoin();
-        newJoin.setFormId(form);
-        newJoin.setSectorKlId(clElementDao.getById(element.getElId()));
-        foFormDao.save(newJoin);
-        element.setId(newJoin.getId());
+        saveNew(form, element);
       } else if (!element.isSelected() && element.getId() != null) {
-        FoFormSectorJoin byId = foFormSectorJoinDao.getById(element.getId());
-        foFormDao.delete(byId);
-        foFormDao.getCurrentSession().flush();
-        element.setId(null);
+        deleteOld(element);
       }
     }
     return dto;
+  }
+
+  private List<FormDto> convertForms(List<ClElement> sectorElements, List<FoForm> foForms) {
+    return foForms.isEmpty() ? Collections.singletonList(emptyForm(sectorElements)) : sectorConverter.convertForms(sectorElements, foForms);
+  }
+
+  private void saveNew(FoForm form, StructureClElementDto element) {
+    FoFormSectorJoin newJoin = new FoFormSectorJoin();
+    newJoin.setFormId(form);
+    newJoin.setSectorKlId(clElementDao.getById(element.getElId()));
+    foFormDao.save(newJoin);
+    element.setId(newJoin.getId());
   }
 
   private FoForm saveOrUpdateForm(FormDto dto) {
@@ -84,5 +81,12 @@ public class SectorService {
     formDto.setElements(sectorConverter.convertElements(sector, new ArrayList<>()));
     formDto.setName("ver1");
     return formDto;
+  }
+
+  private void deleteOld(StructureClElementDto element) {
+    FoFormSectorJoin byId = foFormSectorJoinDao.getById(element.getId());
+    foFormDao.delete(byId);
+    foFormDao.flush();
+    element.setId(null);
   }
 }

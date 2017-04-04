@@ -1,6 +1,5 @@
 package application.sector.dao;
 
-import application.sector.entity.FoForm;
 import application.sector.entity.FoFormSectorJoin;
 import org.springframework.stereotype.Repository;
 

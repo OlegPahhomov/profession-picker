@@ -16,10 +16,6 @@ public class ClElementDao extends BaseDao{
     return id == null ? null : getById(ClElement.class, id);
   }
 
-  public ClClassifier getClfById(Long id){
-    return id == null ? null : getById(ClClassifier.class, id);
-  }
-
   public List<ClElement> getByKlfCode(String klfCode){
     return getCurrentSession().createCriteria(ClElement.class)
             .createAlias("classifier", "clf")
