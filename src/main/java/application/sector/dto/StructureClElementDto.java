@@ -1,4 +1,4 @@
-package application.picker.dto;
+package application.sector.dto;
 
 public class StructureClElementDto {
 

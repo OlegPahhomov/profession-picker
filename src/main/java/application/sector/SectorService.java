@@ -1,6 +1,6 @@
-package application.picker;
+package application.sector;
 
-import application.picker.entity.ClClassifier;
+import application.sector.entity.ClClassifier;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

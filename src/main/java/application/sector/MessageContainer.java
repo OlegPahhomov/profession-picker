@@ -1,4 +1,4 @@
-package application.picker;
+package application.sector;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;

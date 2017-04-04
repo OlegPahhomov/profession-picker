@@ -1,4 +1,4 @@
-package application.picker.entity;
+package application.sector.entity;
 
 import javax.persistence.*;
 

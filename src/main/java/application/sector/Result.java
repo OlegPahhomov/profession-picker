@@ -1,4 +1,4 @@
-package application.picker;
+package application.sector;
 
 import java.util.List;
 

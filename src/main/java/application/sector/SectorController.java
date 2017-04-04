@@ -1,17 +1,14 @@
-package application.picker;
+package application.sector;
 
-import application.picker.entity.ClClassifier;
-import org.apache.commons.lang.StringUtils;
-import org.hibernate.SessionFactory;
+import application.sector.entity.ClClassifier;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
-import application.picker.dto.FormDto;
+import application.sector.dto.FormDto;
 
 import java.util.List;
 
-import static application.picker.Result.ok;
-import static application.picker.Result.nok;
+import static application.sector.Result.ok;
+import static application.sector.Result.nok;
 
 @RequestMapping("/sectors")
 @RestController

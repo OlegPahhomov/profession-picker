@@ -1,6 +1,6 @@
-package application.picker;
+package application.sector;
 
-import application.picker.dto.FormDto;
+import application.sector.dto.FormDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,6 @@
-package application.picker.dto;
+package application.sector.dto;
 
-import application.picker.MessageContainer;
+import application.sector.MessageContainer;
 
 import java.util.List;
 
