@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 
 import javax.sql.DataSource;
 
@@ -16,6 +17,11 @@ public class Application {
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource datasource() {
         return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    public HibernateJpaSessionFactoryBean sessionFactory() {
+        return new HibernateJpaSessionFactoryBean();
     }
 
     @Bean
