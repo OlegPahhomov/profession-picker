@@ -1,6 +1,7 @@
 package application.sector;
 
 import application.sector.entity.ClClassifier;
+import application.sector.entity.ClElement;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class SectorService {
 
   public List<ClClassifier> getAll(){
     return sessionFactory.getCurrentSession().createCriteria(ClClassifier.class)
+            .list();
+  }
+
+  public List<ClElement> getAll2(){
+    return sessionFactory.getCurrentSession().createCriteria(ClElement.class)
             .list();
   }
 }
