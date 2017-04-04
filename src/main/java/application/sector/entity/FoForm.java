@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "fo_form")
-public class FoForm {
+public class FoForm extends AbstractEntity{
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

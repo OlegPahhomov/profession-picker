@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "cl_element")
-public class ClElement {
+public class ClElement extends AbstractEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

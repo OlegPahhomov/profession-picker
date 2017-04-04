@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "fo_form")
-public class FoFormSectorJoin {
+public class FoFormSectorJoin extends AbstractEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

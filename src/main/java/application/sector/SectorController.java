@@ -1,11 +1,9 @@
 package application.sector;
 
-import application.sector.entity.ClClassifier;
+import application.sector.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import application.sector.dto.FormDto;
-
-import java.util.List;
 
 import static application.sector.Result.ok;
 import static application.sector.Result.nok;
@@ -30,7 +28,7 @@ public class SectorController {
     if (container.hasErrors()){
       return nok(container);
     }
-//    todo save
+    sectorService.save(dto);
     return ok();
   }
 }

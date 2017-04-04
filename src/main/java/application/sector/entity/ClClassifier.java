@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "cl_classifier")
-public class ClClassifier {
+public class ClClassifier  extends AbstractEntity{
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

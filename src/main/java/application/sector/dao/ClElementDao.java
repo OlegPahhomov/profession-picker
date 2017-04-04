@@ -12,7 +12,7 @@ import static org.hibernate.criterion.Restrictions.eq;
 public class ClElementDao extends BaseDao{
 
   public ClElement getById(Long id){
-    return id == null ? null : (ClElement) getCurrentSession().get(ClElement.class, id);
+    return id == null ? null : getById(ClElement.class, id);
   }
 
   public List<ClElement> getByKlfCode(String klfCode){
