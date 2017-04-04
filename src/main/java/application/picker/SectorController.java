@@ -1,5 +1,7 @@
 package application.picker;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import application.picker.dto.FormDto;
 
@@ -8,7 +10,10 @@ import static application.picker.Result.nok;
 
 @RequestMapping("/sectors")
 @RestController
-public class SectorsController{
+public class SectorController {
+
+  @Autowired
+  private SectorValidator validator;
 
   @RequestMapping(method = RequestMethod.GET)
   public Result get(){
@@ -19,8 +24,11 @@ public class SectorsController{
 
   @RequestMapping(method = RequestMethod.POST)
   public Result post(@RequestBody FormDto dto){
-    FormDto form = new FormDto();
-    form.setName("12313");
-    return ok(form);
+    MessageContainer container = validator.validateForm(dto);
+    if (container.hasErrors()){
+      return nok(container);
+    }
+//    todo save
+    return ok();
   }
 }
