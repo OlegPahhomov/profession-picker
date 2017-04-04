@@ -5,9 +5,18 @@ import java.util.List;
 
 public class FormDto {
 
+  private Long id;
   private String name;
   private boolean agreement;
   private List<StructureClElementDto> elemendid;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public String getName() {
     return name;
