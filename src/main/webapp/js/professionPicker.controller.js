@@ -29,15 +29,10 @@
 			$http.post('/sectors', vm.newForm).then(function (result) {
 				var apiResponse = result.data;
 				if (apiResponse.ok){
-					console.log("so hapy;");
-					// var index = _.indexOf(vm.staaz.dokumendid, _.find(vm.staaz.dokumendid, {tempId: vm.dokument.tempId}));
-					// vm.staaz.dokumendid.splice(index, 1, vm.dokument);
-					// vm.showDocumentModalEdit = false;
-					// vm.dokument = undefined;
-
+					var savedForm = apiResponse.data;
+					var index = _.indexOf(vm.formData.forms, _.find(vm.formData.forms, {id: savedForm.id}));
+					vm.formData.forms.splice(index, 1, savedForm);
 				} else {
-					console.log("so saaad;");
-					console.log(apiResponse.data);
 					vm.messageContainer = apiResponse.data;
 				}
 			})

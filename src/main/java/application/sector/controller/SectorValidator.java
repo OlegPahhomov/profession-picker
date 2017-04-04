@@ -1,5 +1,6 @@
-package application.sector;
+package application.sector.controller;
 
+import application.sector.MessageContainer;
 import application.sector.dto.FormDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ public class SectorValidator {
 
   public MessageContainer validateForm(@RequestBody FormDto dto) {
     MessageContainer container = new MessageContainer();
-    if (StringUtils.isBlank(dto.getName())){
+    if (StringUtils.isBlank(dto.getUserName())){
       container.addError("please fill the name");
     }
 //    todo add validation for list

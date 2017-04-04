@@ -3,11 +3,11 @@ package application.sector.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "fo_form")
+@Table(name = "fo_form_sector_join")
 public class FoFormSectorJoin extends AbstractEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "form_id")

@@ -43,7 +43,7 @@ public class SectorService {
     return dtos;
   }
 
-  public void save(FormDto dto) {
+  public FormDto save(FormDto dto) {
     FoForm form = saveOrUpdateForm(dto);
     List<StructureClElementDto> elements = dto.getElements();
     for (StructureClElementDto element : elements) {
@@ -56,7 +56,7 @@ public class SectorService {
         foFormDao.delete(foFormSectorJoinDao.getById(element.getId()));
       }
     }
-
+    return dto;
   }
 
   private FoForm saveOrUpdateForm(FormDto dto) {
@@ -66,6 +66,7 @@ public class SectorService {
       form.setUserName(dto.getUserName());
       form.setName("ver1");
       foFormDao.save(form);
+      dto.setId(form.getId());
       return form;
     }
     FoForm form = foFormDao.getById(dto.getId());

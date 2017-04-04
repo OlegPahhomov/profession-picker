@@ -1,5 +1,7 @@
-package application.sector;
+package application.sector.controller;
 
+import application.sector.MessageContainer;
+import application.sector.Result;
 import application.sector.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +30,7 @@ public class SectorController {
     if (container.hasErrors()){
       return nok(container);
     }
-    sectorService.save(dto);
-    return ok();
+    FormDto savedDto = sectorService.save(dto);
+    return ok(savedDto);
   }
 }
