@@ -10,8 +10,7 @@ public class V5__Add_form_table implements SpringJdbcMigration {
             "  id      BIGSERIAL PRIMARY KEY                  NOT NULL,\n" +
             "  name    TEXT                                   NOT NULL,\n" +
             "  user_name    TEXT                                   NOT NULL,\n" +
-            "  agreement    boolean                           NOT NULL,\n" +
-            "  description TEXT                               NULL\n" +
+            "  agreement    boolean                           NOT NULL\n" +
             ");"
     );
 
@@ -19,6 +18,5 @@ public class V5__Add_form_table implements SpringJdbcMigration {
     jdbcTemplate.update("comment on column FO_FORM.name is 'name of the form'");
     jdbcTemplate.update("comment on column FO_FORM.user_name is 'name of the user'");
     jdbcTemplate.update("comment on column FO_FORM.agreement is 'does the user accept? yes/no'");
-    jdbcTemplate.update("comment on column FO_FORM.description is 'description'");
   }
 }
