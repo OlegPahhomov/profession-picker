@@ -11,7 +11,7 @@ public class BaseDao {
   @Autowired
   private SessionFactory sessionFactory;
 
-  public Session getSession() {
+  public Session getCurrentSession() {
     return sessionFactory.getCurrentSession();
   }
 }

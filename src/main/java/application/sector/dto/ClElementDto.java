@@ -1,9 +1,8 @@
 package application.sector.dto;
 
-public class StructureClElementDto {
+public class ClElementDto {
 
   private Long id;
-  private boolean selected;
   private String name;
   private int order;
   private int level;
@@ -14,14 +13,6 @@ public class StructureClElementDto {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public boolean isSelected() {
-    return selected;
-  }
-
-  public void setSelected(boolean selected) {
-    this.selected = selected;
   }
 
   public String getName() {

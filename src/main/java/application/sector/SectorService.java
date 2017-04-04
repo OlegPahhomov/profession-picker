@@ -1,40 +1,82 @@
 package application.sector;
 
-import application.sector.entity.ClClassifier;
+import application.sector.dao.ClElementDao;
+import application.sector.dao.FoFormDao;
+import application.sector.dto.ClElementDto;
+import application.sector.dto.FormDto;
+import application.sector.dto.FormPageDto;
+import application.sector.dto.StructureClElementDto;
 import application.sector.entity.ClElement;
 import application.sector.entity.FoForm;
 import application.sector.entity.FoFormSectorJoin;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class SectorService {
 
   @Autowired
-  private SessionFactory sessionFactory;
+  private ClElementDao clElementDao;
+  @Autowired
+  private FoFormDao foFormDao;
 
-  public List<ClClassifier> getAll(){
-    return sessionFactory.getCurrentSession().createCriteria(ClClassifier.class)
-            .list();
+  public FormPageDto getDtos() {
+    List<ClElement> sector = clElementDao.getByKlfCode("SECTOR");
+    List<FoForm> foForms = foFormDao.findAll();
+
+    FormPageDto dtos = new FormPageDto();
+    dtos.setForms(conver(sector, foForms));
+    dtos.setElements(convert(sector));
+    return dtos;
   }
 
-  public List<ClElement> getAll2(){
-    return sessionFactory.getCurrentSession().createCriteria(ClElement.class)
-            .list();
+  private List<ClElementDto> convert(List<ClElement> sector) {
+    return sector.stream().map(this::convert).collect(Collectors.toList());
   }
 
-  public List<FoForm> getAll23(){
-    return sessionFactory.getCurrentSession().createCriteria(FoForm.class)
-            .list();
+  private List<FormDto> conver(List<ClElement> sector, List<FoForm> foForms) {
+    return foForms.stream().map(form -> convert231(sector, form)).collect(Collectors.toList());
   }
 
-  public List<FoFormSectorJoin> getAll22(){
-    return sessionFactory.getCurrentSession().createCriteria(FoFormSectorJoin.class)
-            .list();
+  private FormDto convert231(List<ClElement> sector, FoForm form) {
+    FormDto dto = new FormDto();
+    dto.setId(form.getId());
+    dto.setName(form.getName());
+    dto.setUserName(form.getUserName());
+    dto.setAgreement(form.isAgreement());
+    dto.setElemendid(convert(sector, form));
+    return dto;
+  }
+
+  private List<StructureClElementDto> convert(List<ClElement> sector, FoForm form) {
+    return sector.stream().map(sec -> convert(sec, form.getFormSectors())).collect(Collectors.toList());
+  }
+
+  private StructureClElementDto convert(ClElement sec, List<FoFormSectorJoin> formSectors) {
+    StructureClElementDto dto = new StructureClElementDto();
+    Optional<Long> sectorId = formSectors.stream().filter(m -> m.getSectorKlId().getId().equals(sec.getId()))
+            .findAny()
+            .flatMap(x -> Optional.of(x.getId()));
+    sectorId.ifPresent(dto::setId);
+    dto.setSelected(sectorId.isPresent());
+    dto.setName(sec.getName());
+    dto.setLevel(sec.getLevelNr());
+    dto.setOrder(sec.getOrderNr());
+    return dto;
+  }
+
+  private ClElementDto convert(ClElement sec) {
+    ClElementDto dto = new ClElementDto();
+    dto.setName(sec.getName());
+    dto.setLevel(sec.getLevelNr());
+    dto.setOrder(sec.getOrderNr());
+    return dto;
   }
 }

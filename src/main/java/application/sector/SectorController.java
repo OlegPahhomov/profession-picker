@@ -21,10 +21,7 @@ public class SectorController {
 
   @RequestMapping(method = RequestMethod.GET)
   public Result get(){
-    List<ClClassifier> all = sectorService.getAll();
-    FormDto form = new FormDto();
-    form.setName("12313");
-    return ok(form);
+    return ok(sectorService.getDtos());
   }
 
   @RequestMapping(method = RequestMethod.POST)

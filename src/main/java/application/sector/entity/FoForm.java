@@ -12,7 +12,7 @@ public class FoForm {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String name;
-  private String user_name;
+  private String userName;
   private boolean agreement;
   @OneToMany(fetch = FetchType.LAZY)
   @JoinColumn(name = "form_id")
@@ -34,12 +34,12 @@ public class FoForm {
     this.name = name;
   }
 
-  public String getUser_name() {
-    return user_name;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUser_name(String user_name) {
-    this.user_name = user_name;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public boolean isAgreement() {

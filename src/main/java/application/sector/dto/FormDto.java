@@ -7,6 +7,7 @@ public class FormDto {
 
   private Long id;
   private String name;
+  private String userName;
   private boolean agreement;
   private List<StructureClElementDto> elemendid;
 
@@ -24,6 +25,14 @@ public class FormDto {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public boolean isAgreement() {
