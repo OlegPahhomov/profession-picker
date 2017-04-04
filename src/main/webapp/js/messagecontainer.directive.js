@@ -9,9 +9,9 @@
 				transclude: false,
 				template: '' +
 				'<div ng-if="vm.messageContainer">'+
-				'<div ng-repeat="value in vm.messageContainer.errors"><span ng-bind="value"></span></div>' +
-				'<div ng-repeat="value in vm.messageContainer.successes"><span ng-bind="value"></span></div>' +
-				'<div ng-repeat="value in vm.messageContainer.notifications"><span ng-bind="value"></span></div>'
+				'<div ng-repeat="value in vm.messageContainer.errors" style="color:red"><span ng-bind="value"></span></div>' +
+				'<div ng-repeat="value in vm.messageContainer.successes" style="color:green"><span ng-bind="value"></span></div>' +
+				'<div ng-repeat="value in vm.messageContainer.notifications" style="color: blue"><span ng-bind="value"></span></div>'
 			}
 		})
 })();
