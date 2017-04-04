@@ -1,6 +1,8 @@
 package application.sector.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "fo_form")
@@ -12,6 +14,9 @@ public class FoForm {
   private String name;
   private String user_name;
   private boolean agreement;
+  @OneToMany(fetch = FetchType.LAZY)
+  @JoinColumn(name = "form_id")
+  private List<FoFormSectorJoin> formSectors = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -43,5 +48,13 @@ public class FoForm {
 
   public void setAgreement(boolean agreement) {
     this.agreement = agreement;
+  }
+
+  public List<FoFormSectorJoin> getFormSectors() {
+    return formSectors;
+  }
+
+  public void setFormSectors(List<FoFormSectorJoin> formSectors) {
+    this.formSectors = formSectors;
   }
 }
