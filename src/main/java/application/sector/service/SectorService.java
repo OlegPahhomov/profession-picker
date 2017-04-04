@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -52,8 +53,12 @@ public class SectorService {
         newJoin.setFormId(form);
         newJoin.setSectorKlId(clElementDao.getById(element.getElId()));
         foFormDao.save(newJoin);
+        element.setId(newJoin.getId());
       } else if (!element.isSelected() && element.getId() != null) {
-        foFormDao.delete(foFormSectorJoinDao.getById(element.getId()));
+        FoFormSectorJoin byId = foFormSectorJoinDao.getById(element.getId());
+        foFormDao.delete(byId);
+        foFormDao.getCurrentSession().flush();
+        element.setId(null);
       }
     }
     return dto;
@@ -64,7 +69,7 @@ public class SectorService {
       FoForm form = new FoForm();
       form.setAgreement(dto.isAgreement());
       form.setUserName(dto.getUserName());
-      form.setName("ver1");
+      form.setName(dto.getName());
       foFormDao.save(form);
       dto.setId(form.getId());
       return form;
@@ -72,13 +77,13 @@ public class SectorService {
     FoForm form = foFormDao.getById(dto.getId());
     form.setAgreement(dto.isAgreement());
     form.setUserName(dto.getUserName());
-    form.setName(dto.getName());
     return form;
   }
 
   private FormDto emptyForm(List<ClElement> sector) {
     FormDto formDto = new FormDto();
     formDto.setElements(sectorConverter.convert(sector, new ArrayList<>()));
+    formDto.setName("ver1");
     return formDto;
   }
 }
