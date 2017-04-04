@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
 <message-container></message-container>
 
 Please enter your name and pick the Sectors you are currently involved in.
 
 <br>
 <br>
-Name:
-<input type="text" ng-model="vm.formData.name">
+Name: <input type="text" ng-model="vm.newForm.name">
 
-<div ng-repeat="element in vm.formData.elements">
+<div ng-repeat="element in vm.newForm.elements">
     <label for="{{element.id}}">
         <input id="{{element.id}}" type="checkbox" ng-model="element.selected"
                ng-value="true" >
@@ -25,7 +16,7 @@ Name:
 
 <br />
 <br />
-<input type="checkbox" ng-model="vm.formData.agreement"> Agree to terms
+<input type="checkbox" ng-model="vm.newForm.agreement"> Agree to terms
 
 <br />
 <br />
@@ -36,6 +27,3 @@ Name:
 <br />
 <br/>
 <a href="/#/original">Original assingment</a>
-
-</body>
-</html>

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,12 +29,15 @@ public class SectorService {
   private FoFormDao foFormDao;
 
   public FormPageDto getDtos() {
-    List<ClElement> sector = clElementDao.getByKlfCode("SECTOR");
+    List<ClElement> sectorElements = clElementDao.getByKlfCode("SECTOR");
     List<FoForm> foForms = foFormDao.findAll();
 
     FormPageDto dtos = new FormPageDto();
-    dtos.setForms(conver(sector, foForms));
-    dtos.setElements(convert(sector));
+    if (foForms.isEmpty()){
+      dtos.setForms(Arrays.asList(emptyForm(sectorElements)));
+    } else {
+      dtos.setForms(conver(sectorElements, foForms));
+    }
     return dtos;
   }
 
@@ -50,12 +55,12 @@ public class SectorService {
     dto.setName(form.getName());
     dto.setUserName(form.getUserName());
     dto.setAgreement(form.isAgreement());
-    dto.setElements(convert(sector, form));
+    dto.setElements(convert(sector, form.getFormSectors()));
     return dto;
   }
 
-  private List<StructureClElementDto> convert(List<ClElement> sector, FoForm form) {
-    return sector.stream().map(sec -> convert(sec, form.getFormSectors())).collect(Collectors.toList());
+  private List<StructureClElementDto> convert(List<ClElement> sector, List<FoFormSectorJoin> formSectors) {
+    return sector.stream().map(sec -> convert(sec, formSectors)).collect(Collectors.toList());
   }
 
   private StructureClElementDto convert(ClElement sec, List<FoFormSectorJoin> formSectors) {
@@ -77,5 +82,11 @@ public class SectorService {
     dto.setLevel(sec.getLevelNr());
     dto.setOrder(sec.getOrderNr());
     return dto;
+  }
+
+  private FormDto emptyForm(List<ClElement> sector) {
+    FormDto formDto = new FormDto();
+    formDto.setElements(convert(sector, new ArrayList<>()));
+    return formDto;
   }
 }
