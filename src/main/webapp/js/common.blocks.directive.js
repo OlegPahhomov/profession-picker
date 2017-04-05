@@ -26,5 +26,44 @@
 				'</div>'
 			}
 		});
-
+	angular
+		.module('profession-picker')
+		.directive('clear10', function () {
+			return {
+				restrict: 'E',
+				replace: true,
+				transclude: true,
+				template: '<div class="clear-10"></div>'
+			}
+		});
+	angular
+		.module('profession-picker')
+		.directive('clear20', function () {
+			return {
+				restrict: 'E',
+				replace: true,
+				transclude: true,
+				template: '<div class="clear-20"></div>'
+			}
+		});
+	angular
+		.module('profession-picker')
+		.directive('clear30', function () {
+			return {
+				restrict: 'E',
+				replace: true,
+				transclude: true,
+				template: '<div class="clear-30"></div>'
+			}
+		});
+	angular
+		.module('profession-picker')
+		.directive('clear40', function () {
+			return {
+				restrict: 'E',
+				replace: true,
+				transclude: true,
+				template: '<div class="clear-40"></div>'
+			}
+		});
 })();

@@ -1,60 +1,49 @@
-<div class="clear-20"></div>
+<clear-20></clear-20>
 
-<div class="row">
-    <div class="large-12 columns">
-        <div class="large-12">
-            <h3>Please enter your name and pick the Sectors you are currently involved in.</h3>
-        </div>
+<row12>
+    <div class="inline-field">
+        <h3>Please enter your name and pick the Sectors you are currently involved in.</h3>
     </div>
-</div>
+</row12>
 
-<div class="clear-20"></div>
+<clear-20></clear-20>
 
-<div class="row">
-    <div class="large-4 medium-6 small-12 columns">
-        <div class="inline-field">
-            <label>Name:
-                <input type="text" placeholder="your name" ng-model="vm.newForm.userName">
+<row4>
+    <div class="inline-field">
+        <label>Name:
+            <input type="text" placeholder="your name" ng-model="vm.newForm.userName">
+        </label>
+    </div>
+</row4>
+
+<row12>
+    <div class="inline-field" ng-repeat="element in vm.newForm.elements">
+        <div ng-style="vm.chooseClass(element)">
+            <label for="{{element.elId}}">
+                <input id="{{element.elId}}" type="checkbox" ng-model="element.selected" ng-value="true">
+                <span ng-bind="element.name"></span>
             </label>
         </div>
     </div>
-</div>
+</row12>
 
-<div class="row">
-    <div class="large-12  columns">
-        <div class="inline-field" ng-repeat="element in vm.newForm.elements">
-            <div ng-style="vm.chooseClass(element)">
-                <label for="{{element.elId}}">
-                    <input id="{{element.elId}}" type="checkbox" ng-model="element.selected" ng-value="true">
-                    <span ng-bind="element.name"></span>
-                </label>
-            </div>
-        </div>
-    </div>
-</div>
+<clear-20></clear-20>
 
-<div class="clear-20"></div>
-
-<div class="row">
-    <div class="large-12 columns">
-        <label for="agreement">
-            <input id="agreement" type="checkbox" ng-model="vm.newForm.agreement">
-            <span>Agree to terms</span>
-        </label>
-    </div>
-</div>
+<row12>
+    <label for="agreement">
+        <input id="agreement" type="checkbox" ng-model="vm.newForm.agreement">
+        <span>Agree to terms</span>
+    </label>
+</row12>
 
 <message-container></message-container>
 
 
-<div class="clear-10"></div>
+<clear-10></clear-10>
 
-<div class="row">
-    <div class="large-4 medium-6 small-12 columns">
-        <input type="button large" class="button" value="Save" ng-click="vm.submitForm()">
-    </div>
-</div>
+<row4>
+    <input type="button large" class="button" value="Save" ng-click="vm.submitForm()">
+</row4>
 
-
-<div class="clear-40"></div>
+<clear-40></clear-40>
 <a href="/#/original">Original assingment</a>
