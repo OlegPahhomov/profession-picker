@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 
-@Repository
+/**
+ * base class for all daos, extend to get convenience methods
+ */
 public abstract class BaseDao {
 
   @Autowired

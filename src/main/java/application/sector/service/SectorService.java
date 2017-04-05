@@ -35,10 +35,9 @@ public class SectorService {
     return new FormPageDto(convertForms(clElementDao.getByKlfCode("SECTOR"), foFormDao.findAll()));
   }
 
-  public FormDto save(FormDto dto) {
+  public FormDto saveOrUpdate(FormDto dto) {
     FoForm form = saveOrUpdateForm(dto);
-    List<StructureClElementDto> elements = dto.getElements();
-    for (StructureClElementDto element : elements) {
+    for (StructureClElementDto element : dto.getElements()) {
       if (element.isSelected() && element.getId() == null) {
         saveNew(form, element);
       } else if (!element.isSelected() && element.getId() != null) {
@@ -48,6 +47,9 @@ public class SectorService {
     return dto;
   }
 
+  /**
+   * if the form is empty, an empty formDto is returned, simplifies front-end display
+   */
   private List<FormDto> convertForms(List<ClElement> sectorElements, List<FoForm> foForms) {
     return foForms.isEmpty() ? Collections.singletonList(emptyForm(sectorElements)) : sectorConverter.convertForms(sectorElements, foForms);
   }
@@ -86,7 +88,7 @@ public class SectorService {
   private void deleteOld(StructureClElementDto element) {
     FoFormSectorJoin byId = foFormSectorJoinDao.getById(element.getId());
     foFormDao.delete(byId);
-    foFormDao.flush();
+    foFormDao.flush(); //hibernate fails to delete without flush
     element.setId(null);
   }
 }

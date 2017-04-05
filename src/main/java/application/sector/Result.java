@@ -2,6 +2,9 @@ package application.sector;
 
 import java.util.List;
 
+/**
+ * wrapper for rest responses, provides convenience ok/nok structure
+ */
 public class Result<T> {
 
   protected boolean ok;

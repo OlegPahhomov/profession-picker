@@ -30,7 +30,7 @@ public class SectorController {
     if (container.hasErrors()){
       return nok(container);
     }
-    FormDto savedDto = sectorService.save(dto);
+    FormDto savedDto = sectorService.saveOrUpdate(dto);
     savedDto.setContainer(successContainer());
     return ok(savedDto);
   }

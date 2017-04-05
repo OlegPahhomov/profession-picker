@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * container of application messages for the user
+ */
 public class MessageContainer implements Serializable{
   private static final long serialVersionUID = 7499353292097505872L;
 

@@ -38,6 +38,9 @@ public class Application {
         });
     }
 
+    /**
+     * user by flyway
+     */
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource datasource) {
         return new JdbcTemplate(datasource);
