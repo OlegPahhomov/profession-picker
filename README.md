@@ -1,5 +1,5 @@
-# profession picker
-Just pick your profession.
+# sector chooser
+#### Just pick your sector.
 
 
 #### 1) You need postgres database
