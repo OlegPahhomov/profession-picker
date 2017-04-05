@@ -9,11 +9,9 @@
 <clear-20></clear-20>
 
 <row4>
-    <div class="inline-field">
-        <label>Name:
-            <input type="text" placeholder="your name" ng-model="vm.newForm.userName">
-        </label>
-    </div>
+    <label>Name:
+        <input type="text" placeholder="your name" ng-model="vm.newForm.userName">
+    </label>
 </row4>
 
 <row12>
@@ -30,10 +28,12 @@
 <clear-20></clear-20>
 
 <row12>
-    <label for="agreement">
-        <input id="agreement" type="checkbox" ng-model="vm.newForm.agreement">
-        <span>Agree to terms</span>
-    </label>
+    <div class="inline-field">
+        <label for="agreement">
+            <input id="agreement" type="checkbox" ng-model="vm.newForm.agreement">
+            <span>Agree to terms</span>
+        </label>
+    </div>
 </row12>
 
 <message-container></message-container>

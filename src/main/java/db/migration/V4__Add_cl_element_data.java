@@ -3,7 +3,7 @@ package db.migration;
 import org.flywaydb.core.api.migration.spring.SpringJdbcMigration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class V4__Add_cl_element_table implements SpringJdbcMigration {
+public class V4__Add_cl_element_data implements SpringJdbcMigration {
   @Override
   public void migrate(JdbcTemplate jdbcTemplate) throws Exception {
     int i = 1;
