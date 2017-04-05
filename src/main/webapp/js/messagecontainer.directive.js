@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('messageContainer', function () {
 			return {
 				restrict: 'E',

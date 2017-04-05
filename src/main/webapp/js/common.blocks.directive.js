@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('row12', function () {
 			return {
 				restrict: 'E',
@@ -14,7 +14,7 @@
 			}
 		});
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('row4', function () {
 			return {
 				restrict: 'E',
@@ -27,7 +27,7 @@
 			}
 		});
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('clear10', function () {
 			return {
 				restrict: 'E',
@@ -37,7 +37,7 @@
 			}
 		});
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('clear20', function () {
 			return {
 				restrict: 'E',
@@ -47,7 +47,7 @@
 			}
 		});
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('clear30', function () {
 			return {
 				restrict: 'E',
@@ -57,7 +57,7 @@
 			}
 		});
 	angular
-		.module('profession-picker')
+		.module('sector-chooser')
 		.directive('clear40', function () {
 			return {
 				restrict: 'E',

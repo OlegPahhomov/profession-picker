@@ -1,16 +1,16 @@
 (function () {
 	'use strict';
-	angular.module('profession-picker')
-		.controller('ProfessionPickerController', ProfessionPickerController);
+	angular.module('sector-chooser')
+		.controller('SectorChooserController', SectorChooserController);
 
-	ProfessionPickerController.$inject = ['$http'];
+	SectorChooserController.$inject = ['$http'];
 
-	function ProfessionPickerController($http) {
+	function SectorChooserController($http) {
 		var vm = this;
 		vm.init = init;
 		vm.submitForm = submitForm;
+		vm.chooseStyle = chooseStyle;
 		vm.init();
-		vm.chooseClass = chooseClass;
 
 		function init() {
 			$http.get('/sectors').then(function (result) {
@@ -42,7 +42,7 @@
 			})
 		}
 
-		function chooseClass(element) {
+		function chooseStyle(element) {
 			if (element && element.level){
 				if (element.level == 1){
 					return {};

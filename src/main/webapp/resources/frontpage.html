@@ -18,7 +18,7 @@
 
 <row12>
     <div class="inline-field" ng-repeat="element in vm.newForm.elements">
-        <div ng-style="vm.chooseClass(element)">
+        <div ng-style="vm.chooseStyle(element)">
             <label for="{{element.elId}}">
                 <input id="{{element.elId}}" type="checkbox" ng-model="element.selected" ng-value="true">
                 <span ng-bind="element.name"></span>

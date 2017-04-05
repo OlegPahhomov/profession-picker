@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 	angular
-		.module('profession-picker', [
+		.module('sector-chooser', [
 			'ngRoute'
 		])
 		.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -10,7 +10,7 @@
 			$routeProvider
 				.when("/", {
 					templateUrl: urlBase + "frontpage.html",
-					controller: 'ProfessionPickerController as vm'
+					controller: 'SectorChooserController as vm'
 				})
 				.when("/original", {
 					templateUrl: urlBase + "original_index.html",
