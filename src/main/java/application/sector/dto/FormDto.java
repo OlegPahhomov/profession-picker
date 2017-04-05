@@ -1,5 +1,7 @@
 package application.sector.dto;
 
+import application.sector.MessageContainer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class FormDto {
   private String userName;
   private boolean agreement;
   private List<StructureClElementDto> elements;
+  private MessageContainer container;
 
   public Long getId() {
     return id;
@@ -52,5 +55,13 @@ public class FormDto {
 
   public void setElements(List<StructureClElementDto> elements) {
     this.elements = elements;
+  }
+
+  public MessageContainer getContainer() {
+    return container;
+  }
+
+  public void setContainer(MessageContainer container) {
+    this.container = container;
   }
 }

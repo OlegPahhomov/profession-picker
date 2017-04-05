@@ -31,6 +31,13 @@ public class SectorController {
       return nok(container);
     }
     FormDto savedDto = sectorService.save(dto);
+    savedDto.setContainer(successContainer());
     return ok(savedDto);
+  }
+
+  private MessageContainer successContainer() {
+    MessageContainer messageContainer = new MessageContainer();
+    messageContainer.addSuccess("salvestamine õnnestus");
+    return messageContainer;
   }
 }

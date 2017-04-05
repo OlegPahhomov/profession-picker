@@ -35,6 +35,7 @@
 					var index = _.indexOf(vm.formData.forms, _.find(vm.formData.forms, {id: savedForm.id}));
 					vm.formData.forms.splice(index, 1, savedForm);
 					vm.newForm = vm.formData.forms[0];
+					vm.messageContainer = vm.newForm.container;
 				} else {
 					vm.messageContainer = apiResponse.data;
 				}
