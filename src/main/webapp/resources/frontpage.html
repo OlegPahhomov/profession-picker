@@ -1,22 +1,41 @@
-Please enter your name and pick the Sectors you are currently involved in.
+<div class="clear-20"></div>
 
-<br>
-<br>
-Name: <input type="text" ng-model="vm.newForm.userName">
+<div class="row">
+    <div class="large-12">
+        <h3>Please enter your name and pick the Sectors you are currently involved in.</h3>
+    </div>
+</div>
 
-<div ng-repeat="element in vm.newForm.elements">
-    <div ng-style="vm.chooseClass(element)">
-        <label for="{{element.id}}">
-            <input id="{{element.id}}" type="checkbox" ng-model="element.selected" ng-value="true">
-            <span ng-bind="element.name"></span>
+<div class="clear-20"></div>
+
+<div class="row">
+    <div class="large-4 medium-6 small-12 columns">
+        <label>Name:
+            <input type="text" placeholder="your name" ng-model="vm.newForm.userName">
         </label>
     </div>
 </div>
 
-<br/>
+<div class="row">
+    <div class="large-12 columns">
+        <div ng-repeat="element in vm.newForm.elements">
+            <div ng-style="vm.chooseClass(element)">
+                <label for="{{element.elId}}">
+                    <input id="{{element.elId}}" type="checkbox" ng-model="element.selected" ng-value="true">
+                    <span ng-bind="element.name"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
 
-<br/>
-<input type="checkbox" ng-model="vm.newForm.agreement"> Agree to terms
+<div class="clear-20"></div>
+
+<div class="row">
+    <div class="large-12">
+        <input type="checkbox" ng-model="vm.newForm.agreement"> Agree to terms
+    </div>
+</div>
 
 <message-container></message-container>
 
@@ -25,11 +44,12 @@ Name: <input type="text" ng-model="vm.newForm.userName">
 <!--<input type="text" ng-model="vm.newForm.name">-->
 <!--<br/>-->
 
-<br/>
-<input type="button" value="Save" ng-click="vm.submitForm()">
+<div class="clear-10"></div>
 
-<br/>
-<br/>
-<br/>
-<br/>
+<div class="row">
+    <input type="button large" class="button" value="Save" ng-click="vm.submitForm()">
+</div>
+
+
+<div class="clear-40"></div>
 <a href="/#/original">Original assingment</a>
