@@ -13,16 +13,16 @@ public class SectorValidator {
   public MessageContainer validateForm(@RequestBody FormDto dto) {
     MessageContainer container = new MessageContainer();
     if (StringUtils.isBlank(dto.getUserName())){
-      container.addError("please fill the name");
+      container.addError("Fill the name to save");
     }
     long countOfSelected = dto.getElements().stream().filter(StructureClElementDto::isSelected).count();
     if (countOfSelected == 0){
-      container.addError("no sector is chosen");
+      container.addError("No sector is chosen");
     } else if (countOfSelected > 5){
-      container.addError("choose up to 5 sectors");
+      container.addError("According to sector regulations you can choose up to 5 sectors");
     }
     if (!dto.isAgreement()){
-      container.addError("you must agree to the terms");
+      container.addError("In order to save you must agree to the terms");
     }
     return container;
   }

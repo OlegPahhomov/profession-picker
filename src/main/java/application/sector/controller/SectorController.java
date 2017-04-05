@@ -37,7 +37,7 @@ public class SectorController {
 
   private MessageContainer successContainer() {
     MessageContainer messageContainer = new MessageContainer();
-    messageContainer.addSuccess("salvestamine õnnestus");
+    messageContainer.addSuccess("Successfully saved");
     return messageContainer;
   }
 }
