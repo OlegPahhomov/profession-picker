@@ -16,37 +16,37 @@ import javax.sql.DataSource;
 @SpringBootApplication
 public class Application {
 
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource datasource() {
-        return DataSourceBuilder.create().build();
-    }
+  @Bean
+  @ConfigurationProperties(prefix = "spring.datasource")
+  public DataSource datasource() {
+    return DataSourceBuilder.create().build();
+  }
 
-    @Bean
-    public HibernateJpaSessionFactoryBean sessionFactory() {
-        return new HibernateJpaSessionFactoryBean();
-    }
+  @Bean
+  public HibernateJpaSessionFactoryBean sessionFactory() {
+    return new HibernateJpaSessionFactoryBean();
+  }
 
-    @Bean
-    public EmbeddedServletContainerCustomizer containerCustomizer() {
-        return (container -> {
-            ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
-            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
-            ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+  @Bean
+  public EmbeddedServletContainerCustomizer containerCustomizer() {
+    return (container -> {
+      ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
+      ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
+      ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
 
-            container.addErrorPages(error401Page, error404Page, error500Page);
-        });
-    }
+      container.addErrorPages(error401Page, error404Page, error500Page);
+    });
+  }
 
-    /**
-     * user by flyway
-     */
-    @Bean
-    public JdbcTemplate jdbcTemplate(DataSource datasource) {
-        return new JdbcTemplate(datasource);
-    }
+  /**
+   * used by flyway
+   */
+  @Bean
+  public JdbcTemplate jdbcTemplate(DataSource datasource) {
+    return new JdbcTemplate(datasource);
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 }
